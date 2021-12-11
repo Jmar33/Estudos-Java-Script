@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Eventos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src='js/jquery.js'></script>
+    <style>
+        input {
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body class='conteudo exercicio'>
+    <h1>Eventos #02</h1>
+    <div id='div1'>1</div>
+    <div id="resultado1">?</div>
+    <br>
+    <input type="text" placeholder="Digite e Selecione">
+    <div id="resultado2">?</div>
+    <script>
+        alternarDestaque = () => $('#div1').toggleClass('destaque')
+        //$('#div1').on('mouseenter mouseleave', alternarDestaque)
+        $('#div1').hover(alternarDestaque, alternarDestaque)//No método hover podemos associar mais de uma função, a primeira fução irá ocorrer quando
+                                                            //"entramos no objeto" e a segunda quando "saímos do objeto", no caso de passarmos uma única função
+                                                            //ela será chamada nos dois momentos. O mesmo comportamento pode ser reproduzido, passando dois parâmetros para
+                                                            //o método on
+        $('#div1').one('mouseenter', e => alert('AVISO IMPORTANTE: Obrigado, Gratidão, Namastê!!')) //Evento que dispara a callback uma única vez
+        $('#div1').dblclick(e => $('#div1').fadeOut(1000).fadeIn(1000)) //Evento é disparado ao darmos um duplo clique
+
+        //Evento disparado ao mudarmos o tamanho da página
+        $(window).resize(function(e){
+            const width =  $(window).width()
+            const height = $(window).height()
+            $('#resultado1').html(`Largura: ${width} Altura: ${height}`)
+        })
+
+        //Select é disparado ao fazermos uma seleção
+        $(':input').select(e => {
+            const inicio = e.target.selectionStart
+            const fim  = e.target.selectionEnd
+            $('#resultado2').html(e.target.value.substring(inicio, fim))
+        })
+    </script>
+</body>

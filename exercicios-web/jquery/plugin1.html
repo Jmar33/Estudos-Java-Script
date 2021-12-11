@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Plugin #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src='js/jquery.js'></script>
+</head>
+
+<body class='conteudo exercicio'>
+    <h1>Plugin #01</h1>
+    <div>
+        {{ 1 + 2 }}
+        Texto 1
+        {{ 3 ** 3 }}
+        Texto 2
+        {{ console.log('Funcionou!') }}
+        Texto 3
+        {{ (function() { return 'Legal!!!' })() }}
+        Texto Final
+    </div>
+
+    <script>
+        // "{{" --> Double Mustache padrão usado por muitos frameworks( Angular, por exemplo) 
+        //para dados que dever ser interpolados e substituídos pelo o seu valor
+
+        //Eval é a função do JS responsável ler e resolver o conteúdo dessas interpolações
+
+        //Uma forma de garantir que o $ sempre representará o Jquery, é por meio de uma função autoinviocada
+
+        (function ($){
+            $.fn.interpretar = function(){
+                const retirarChaves = s => s.substring(2, s.length - 2)
+                const conteudo = $(this).html()
+                //No regex o a "{" é um caractere especial, logo deve ser acompanhada da "\"
+                //O . representa que podemos ter qualquer conteúdo
+                //E o + que podemos ter um ou mais caracteres
+                //O parâmetro g representa que o nosso regex será global, ou seja, podemos receber uma lista de expressões
+                const expressoesComChaves = conteudo.match(/\{\{.+\}\}/g)
+                const expressoes = expressoesComChaves.map(retirarChaves)
+                const resultados = expressoes.map(e => eval(e))
+
+                let conteudoFinal = conteudo
+                for(let i= 0; i < expressoesComChaves.length; i++){
+                    conteudoFinal = conteudoFinal.replace(
+                        expressoesComChaves[i], resultados[i]
+                    )
+                }
+                $(this).html(conteudoFinal)
+                return this
+            }
+        })(jQuery)
+
+        $('div').interpretar()
+
+
+    </script>
+</body>

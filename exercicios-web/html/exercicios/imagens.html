@@ -1,0 +1,158 @@
+<div wm-slider id="wm-slider">
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg"
+        alt="Muro da Cidade"
+        width="513"
+        height="342"
+        title="Muro da Cidade Por Tarso Bessa"
+        >
+    </p>
+    
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif"
+        alt="Intro Cod3r"
+        height="342">
+    </p>
+    
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png"
+        alt="Rio de Janeiro"
+        height="342">
+    </p>
+    
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg"
+        alt="Avatar"
+        height="50" align="left">
+        Texto adhdkshdkjahdkjahkjdshakjshdkajshdkjah
+        dlakjsdlkfjsdaklfjlkasdj afljdslkf jkljlk  jsakfdasdfpo
+        aawedfsadf jklsjdf vadogjiaoir oçjagaoklvwauehpugjdp 
+        ajlçdjksadjfaigfjkaldçj oiasdjfoiasdjf joiçdjgaoifer 
+        adsjfçkfjweifhj jifjsdfklsauiuf aj fkadljfjlsjkdf
+        lskjfdkldjalkdjh adf oijadfaçl fljsdjdklfsd ajiodslfjoa
+        sgfgsdlkgj jlidasjads fjlsdfkd jkldfjlksadhagldg 
+    </p>
+    
+    <p class="cidade"></p>
+    
+    <p>
+        <picture> <!--Permite nos mostrar várias imagens-->
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png"
+                media="(min-width: 600px)"><!-- A propriedade media nos permite exibir uma imgem de forma condicional,
+                    caso a condição não seja atendida iremos ver a próxima tag source, e no último caso sereá renderizado a tag img-->
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="logo">
+        </picture>
+    </p>
+</div>
+
+
+
+<style>
+    p{
+        position: absolute;
+        display: none;
+    }
+    
+    .circular{
+        width: 513px;
+        background-color: #444;
+    }
+
+    .texto{
+        width: 400px;
+    }
+
+    .texto img{
+        margin-right: 10px;
+    }
+
+    .cidade{
+        width: 513px;
+        height: 342px;
+        background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+</style>
+
+<!-- <script>
+    let proximaImagem = 1;
+    var zIndexAtual = 0;
+    var imagens = document.getElementById("wm-slider").children;
+
+    function avancarImagem(){
+        imagem = imagens[proximaImagem];
+        imagem.style.zIndex = ++zIndexAtual;
+        imagem.style.marginLeft = "0%"
+
+        proximaImagem++;
+
+        if(proximaImagem >= imagens.length){
+            proximaImagem = 0;
+        }
+
+        setTimeout(resetarImagens, 500);
+    }
+
+    function resetarImagens(){
+        imagemVisivel = proximaImagem -1;
+
+        if(imagemVisivel < 0){
+            imagemVisivel = imagens.length -1;
+        }
+
+        for(var i =0; i < imagens.length; i++){
+            if(i != imagemVisivel){
+                imagens[i].style.marginLeft= "100%"
+            }
+        }
+    }
+
+    var intervalo = setInterval(avancarImagem, 2000);
+</script> -->
+
+<script>
+    function mover(elemento, inicio, fim, passo, callback){
+        const novoInicio = inicio - passo
+        if(novoInicio >= fim){
+            elemento.style.left = novoInicio + 'px'
+            setTimeout(() => mover(elemento, novoInicio, fim, passo, callback), 7)
+        }else{
+            callback()
+        }
+    }
+
+    // const p = document.querySelector('[wm-slider] > p') //Captura a primeira ocorrência da tag p dentro de uma tag com a propriedade wm-slider
+    // p.style.display = 'block'
+    // mover(p, 1500, -520, 5, ()=>{
+    //     console.log('Terminou!!!')
+    // })
+
+    function slider(){
+        const elementos = document.querySelectorAll('[wm-slider] > p') //Retorna um Node List
+        const slides = Array.from(elementos) //transforma em um array
+        exibirSlides(slides, slides[0])
+    }
+
+    function exibirSlides(slides, slide){
+        slide.style.display = 'block'
+
+        const inicio = innerWidth
+        const fim = -slide.clientWidth
+
+        slide.style.left = `${inicio}px`
+        mover(slide, inicio, fim, 5, () =>{
+            slide.style.display = 'none'
+            exibirSlides(slides, getProximo(slides, slide))
+        })
+
+    }
+
+    function getProximo(lista, atual){
+        const i = lista.indexOf(atual) + 1
+        return i < lista.length ? lista[i] : lista[0]
+    }
+
+    slider()
+</script>

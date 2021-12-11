@@ -1,0 +1,72 @@
+<video id="meuVideo" width=800 height=450 controls autoplay controlsList="nodownload">
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
+    Seu browser não tem suporte a video
+</video>
+
+<div wm-progresso="meuVideo" class="progresso">
+    <div id="progresso"></div>
+</div>
+
+<div>
+    <button onclick="play()" wm-play="meuVideo">Play</button>
+    <button onclick="pause()" wm-pause="meuVideo">Pause</button>
+</div>
+
+<!-- <script>
+    var video = document.getElementById("meuVideo");
+    const progresso = document.querySelector('[wm-progresso] > div')
+    function play(){
+        video.play();
+    }
+
+    function pause(){
+        video.pause();
+    }
+
+    function progressLoop(){
+        setInterval(function (){
+            progresso.style.width = Math.round(( video.currentTime / video.duration) * 100) + "%"
+        })
+    }
+
+    progressLoop()
+</script> -->
+            <!-- <div>Outra forma de resolver esse desafio seria</div> -->
+<script>
+    function configurarVideo(id){
+        const video = document.getElementById(id)
+        video.oncontextmenu = () => false
+
+        document.querySelector(`[wm-play] = ${id}`).onclick = e => video.play()
+        document.querySelector(`[wm-pause]=${id}`).onclick = e => video.pause()
+
+        setInterval(() => {
+            const percentual = (video.currentTime / video.duration) * 100
+            const valorDiv = document.querySelector(`[wm-progresso] > div`)
+            valorDiv.style.width = `${percentual}%`
+        }, 500)
+    }
+    
+    configurarVideo('meuVideo')
+
+</script>
+
+
+<style>
+    .progresso{
+        height: 20px;
+        width: 500px;
+        border: solid 1px #444;
+        margin: 20px;
+    }
+
+    .progresso > div{
+        background-color: red;
+        color: #fff;
+        height: 100%;
+        text-align: right;
+        font-size: 14px;
+        width: 0%;
+
+    }
+</style>

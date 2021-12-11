@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <script>
+        const body = document.querySelector('body')
+
+        const div1 = document.createElement('div')
+        div1.classList.add('destaque')
+        div1.innerHTML = 'Primeiro'
+
+        const div2 = document.createElement('div')
+        div2.setAttribute('wm-atributo', 'valor')
+        div2.innerHTML ='Segundo'
+
+        const p = document.createElement('p')
+        p.innerHTML = 'Terceiro'
+        const div3 = document.createElement('div')
+        div3.appendChild(p)
+
+        body.appendChild(div1)
+        body.appendChild(div2)
+        body.appendChild(div3)
+
+        const texto = document.createTextNode('Antes...')
+        div3.insertBefore(texto, div3.childNodes[0]) //Insere um elemento antes de determinado nó
+
+        //Clonando um elemento
+        const div4 = div3.cloneNode(true) // A função recebe um parâmetro deep do tipo bool que irá dizer 
+                                          // se os filhos desse elemento devem ou não, ser clonados
+        body.appendChild(div4)
+        body.removeChild(div3)
+
+
+
+    </script>
+</body>
+
+</html>

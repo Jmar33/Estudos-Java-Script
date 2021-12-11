@@ -1,0 +1,23 @@
+<h1>Links</h1>
+
+<!--URL Absoluta-->
+<a id="inicio" href="https://www.google.com.br">Google1</a><br><!--Quando usamos a URL absoluta somos obrigados a colocar o protocolo que estamos utilizando -->
+<a href="https://www.google.com.br" target="_blanck">Google2</a><br><br><!--Usamos target="_blanck" para abrir o link em uma nova aba -->
+
+<!--URL relativa-->
+<a href="index.html">Voltar1</a><br><!--É feita uma busca pelo arquivo na página atual -->
+<a href="/index.html">Voltar2</a><br> <!--É feita uma busca do arquivo no diretório raiz da aplicação-->
+<a href="../index.html">Voltar3</a><br><br> <!--Retornamos uma pasta e buscamos pelo arquivo -->
+
+<!--Link para enviar um email-->
+<a href="mailto:empresa@email.com.br">entre em contato</a><br><br>
+
+<div id="noticia" style="position: absolute; top:2000px">
+    <h1>Noticia Buemba</h1>
+    <p>Não era nada... :)</p>
+    <a href="#inicio">Voltar ao inicio</a>
+</div>
+
+<!--O links âncoras nos permitem navegar dentro da própria página-->
+<!--O endereço âncora que aparece na url não pode ser enviado ao backend-->
+<a href="#noticia">Ir para noticia</a>

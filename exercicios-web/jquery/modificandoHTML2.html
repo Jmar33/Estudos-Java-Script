@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src='js/jquery.js'></script>
+</head>
+
+<body class='conteudo exercicio'>
+    <h1>Modificando HTML #02</h1>
+    <div id='div1'>1</div>
+    <div id='div2'>2</div>
+    <div id='div3'>3</div>
+    <p class='numero'>4</p>
+    <p class='numero'>5</p>
+
+    <script>
+        $('#div1').append(', 2') //Insere elementos no final de um determinado elemento
+        $('#div1').prepend('0, ') //Insere elmentos no início de um determinado elemento
+
+        //Quando usamos appendTo ou prependTo é necessário usarmos um pouco mais de texto, como as tags <span></span> do exemplo, para 
+        //indicar a criaçlão de um determinado elemento
+        $('<span>, 3</span>').appendTo('#div1')
+        $('<span>-1, </span>').prependTo('#div1')
+
+        $('#div2').before('<p>Antes 2</p>') //Insere um nó antes de determinado elemento
+        $('#div2').after('<p>Depois 2</p>') //Insere um nó depois de determinado elemento
+
+        $('<p>Antes 3</p>').insertBefore('#div3')
+        $('<p>Depois 3</p>').insertAfter('#div3')
+
+        //$('p.numero').wrap('<div>') //Nesse caso estamos envolvendo cada um dos parágrafos com uma div
+        $('p.numero').wrapAll('<div id="div4">') //Já com o wrappAll, estamos envolvendo todos os elementos selecionados com uma única div
+        $('#div4').empty() //Remove todo o conteúdo de um determinado seletor
+
+        $('#div3, #div4').prev().remove() //Usamos prev() para selecionar o elemento anterior e como remove, excluímos o elemento
+        //$('<div>Substituto</div>').replaceAll('body > p') //Susbstitui todos os parágrafos direto em body pela 'div substituto'
+        //$('body > p').replaceWith('<div>Substituto</div>')
+        //O replaceWith também pode ser usado com uma função callback
+        $('body > p').replaceWith(function(){
+            return $('<div>').html($(this).html()).append('!!!') //Nesse caso o "this" representa cada um dos parágrafos selecionados
+        })
+    </script>
+</body>

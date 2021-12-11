@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox #03</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+       
+       .flex-container div{
+            box-sizing: border-box;
+       }
+
+       .flex-container{
+           display: flex;
+       }
+
+       .flex-container div{
+           flex-basis: 100px; /*Define o tamamnho no main axis (essa propriedade de sobresai as propriedades de altura e largura)*/
+           width: 100px;
+       }
+
+       /*short cuts são propriedades que definem mais de um parâmetro com um único comando*/
+       .flex-container div:nth-child(4){
+           /* grow shirink basis*/
+           /*Grow -> peso do elemento, representa o quanto ele irá aumentar*/
+           /*Shirink* -> peso do elemento que representa a proporção naqual ele irá diminuir*/
+           flex: 3 6 100px;
+       }
+
+       .flex-container{
+           width:200px
+       }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container tag nolabel">
+        <div class="tag nolabel">1</div>
+        <div class="tag nolabel">2</div>
+        <div class="tag nolabel">3</div>
+        <div class="tag nolabel">4</div>
+    </div>
+    <script src="js/tag.js"></script>
+</body>
+
+</html>
