@@ -1,0 +1,7 @@
+@import "~bootstrap/scss/bootstrap"; //o caracter ~ indica que a dependência está dentro da pasta
+//node modules
+
+$fa-font-path: "~font-awesome/fonts"; //variável do sass que indica onde estão as fontes do projeto
+@import "~font-awesome/scss/font-awesome";
+
+@import "custom";
