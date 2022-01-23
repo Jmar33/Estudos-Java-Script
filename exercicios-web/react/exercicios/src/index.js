@@ -1,10 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-//O módulo React deve ser importado sempre que houver códigos JSX's no nossos arquivos
 
-import Primeiro from './componentes/Primeiro'
+//Todos os nossos componentes devem iniciar com letra maiúscula
+import BomDia from './componentes/BomDia'
 
-const elemento  = <h1>React 2</h1> //JSX -> JS extendido
-
-//ReactDOM é responsável por controlar a DOM
-ReactDOM.render(<Primeiro/>, document.getElementById('root'))
+//Podemos passar paramêtros para um determinado componente colocando o nome da propriedade o seu valor
+//parâmetros que não são do tipo string, podem ser passados entre {}
+ReactDOM.render(<BomDia nome="Guilherme"/>, document.getElementById('root'))
